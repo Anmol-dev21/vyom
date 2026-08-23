@@ -5,6 +5,7 @@ import '../features/business_setup/business_setup_screen.dart';
 import '../features/dashboard/dashboard_screen.dart';
 import '../features/onboarding/language_selection_screen.dart';
 import '../features/onboarding/splash_screen.dart';
+import '../features/products/product_list_screen.dart';
 
 final appRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
@@ -25,6 +26,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/dashboard',
         builder: (context, state) => const DashboardScreen(),
+      ),
+      GoRoute(
+        path: '/products',
+        builder: (context, state) => const ProductListScreen(),
       ),
     ],
   );

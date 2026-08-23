@@ -22,6 +22,11 @@ class DashboardScreen extends StatelessWidget {
             onPressed: () => context.go('/business-setup'),
             icon: const Icon(Icons.business_center_outlined),
           ),
+          IconButton(
+            tooltip: 'Products',
+            onPressed: () => context.go('/products'),
+            icon: const Icon(Icons.inventory_2_outlined),
+          ),
         ],
       ),
       body: SingleChildScrollView(

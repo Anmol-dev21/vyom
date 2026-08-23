@@ -31,6 +31,11 @@ final productRepositoryProvider = Provider<ProductRepository>(
   (ref) => ProductRepository(ref.watch(appDatabaseProvider)),
 );
 
+final productListProvider = FutureProvider<List<Product>>((ref) async {
+  final repository = ref.watch(productRepositoryProvider);
+  return repository.getActiveProducts();
+});
+
 final customerRepositoryProvider = Provider<CustomerRepository>(
   (ref) => CustomerRepository(ref.watch(appDatabaseProvider)),
 );
