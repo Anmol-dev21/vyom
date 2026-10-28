@@ -5,7 +5,10 @@ import 'app_settings_repository.dart';
 import 'business_profile_repository.dart';
 import 'customer_product_repository.dart';
 import 'customer_repository.dart';
+import 'daily_distribution_repository.dart';
 import 'product_repository.dart';
+import 'product_pricing_repository.dart';
+import 'transaction_repository.dart';
 
 final appDatabaseProvider = Provider<AppDatabase>((ref) => AppDatabase());
 
@@ -40,6 +43,27 @@ final customerRepositoryProvider = Provider<CustomerRepository>(
   (ref) => CustomerRepository(ref.watch(appDatabaseProvider)),
 );
 
+final customerListProvider = FutureProvider<List<Customer>>((ref) async {
+  final repository = ref.watch(customerRepositoryProvider);
+  return repository.getActiveCustomers();
+});
+
 final customerProductRepositoryProvider = Provider<CustomerProductRepository>(
   (ref) => CustomerProductRepository(ref.watch(appDatabaseProvider)),
+);
+
+final dailyDistributionRepositoryProvider =
+    Provider<DailyDistributionRepository>(
+      (ref) => DailyDistributionRepository(
+        ref.watch(appDatabaseProvider),
+        ref.watch(productPricingRepositoryProvider),
+      ),
+    );
+
+final transactionRepositoryProvider = Provider<TransactionRepository>(
+  (ref) => TransactionRepository(ref.watch(appDatabaseProvider)),
+);
+
+final productPricingRepositoryProvider = Provider<ProductPricingRepository>(
+  (ref) => ProductPricingRepository(ref.watch(appDatabaseProvider)),
 );

@@ -57,24 +57,37 @@ class DashboardScreen extends StatelessWidget {
               itemCount: actions.length,
               itemBuilder: (context, index) {
                 final action = actions[index];
-                return Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(
-                          action.$2,
-                          size: 30,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                        Text(
-                          action.$1,
-                          style: Theme.of(context).textTheme.titleMedium
-                              ?.copyWith(fontWeight: FontWeight.w600),
-                        ),
-                      ],
+                return GestureDetector(
+                  onTap: () {
+                    if (action.$1 == 'Customers') {
+                      context.go('/customers');
+                    } else if (action.$1 == 'Daily Update') {
+                      context.go('/daily-update');
+                    } else if (action.$1 == 'Transactions') {
+                      context.go('/transactions');
+                    } else if (action.$1 == 'Reports') {
+                      context.go('/reports');
+                    }
+                  },
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon(
+                            action.$2,
+                            size: 30,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                          Text(
+                            action.$1,
+                            style: Theme.of(context).textTheme.titleMedium
+                                ?.copyWith(fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 );
